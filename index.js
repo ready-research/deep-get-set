@@ -28,6 +28,7 @@ function set (obj, path, value) {
   var keys = Array.isArray(path) ? path : path.split('.');
   for (var i = 0; i < keys.length - 1; i++) {
     var key = keys[i];
+    if (typeof key !== 'string' && typeof key !== 'number') { key = String(key); }
     if (!isSafeKey(key)) return;
     if (deep.p && !hasOwnProp.call(obj, key)) obj[key] = {};
     obj = obj[key];
